@@ -14,10 +14,10 @@ class IndexItem:
     description: str
 
     def __lt__(self, other):
-        return self.keyword < other.keyword
+        return self.keyword.upper() < other.keyword.upper()
 
     def __gt__ (self, other):
-        return self.keyword > other.keyword
+        return self.keyword.upper() > other.keyword.upper()
 
 TEMPLATE_FILE = "template.html"
 
