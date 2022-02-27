@@ -23,21 +23,15 @@
                 font-size: 30px; 
                 font-weight: bold;
             }
-            .section-keyword {
+            .keyword {
                 color: blue;
                 font-weight: bold;
             }
+            .description {
+                font-size: 13px;
+            }
 
             @media print {
-                /* remove document URL from printing */
-                @page {
-                    margin-top: 0;
-                    margin-bottom: 0;
-                }
-                body {
-                    padding-top: 72px;
-                    padding-bottom: 72px ;
-                }
             }
         </style>
     </head>
@@ -47,7 +41,11 @@
             <span class="section-title">{{ section }}</span>
             <ul>
                 {% for e in entries %}
-                    <li><span class="section-keyword">{{ e['keyword'] }}</span> <i>[B{{ e['book_number'] }}/C{{ e['chapter_number'] }}/P{{ e['page_number'] }}]</i> {{ e['description'] }}</li>
+                    <li>
+                        <span class="keyword">{{ e['keyword'] }}</span> 
+                        <i>[B{{ e['book_number'] }}/C{{ e['chapter_number'] }}/P{{ e['page_number'] }}]</i> 
+                        <span class="description">{{ e['description'] }}</span>
+                    </li>
                 {% endfor %}
             </ul>
         </div>

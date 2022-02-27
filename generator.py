@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 
+from ast import Str
 import csv
 import jinja2
+import argparse
 from collections import OrderedDict, defaultdict
 from dataclasses import dataclass
 
@@ -20,14 +22,17 @@ class IndexItem:
         return self.keyword.upper() > other.keyword.upper()
 
 TEMPLATE_FILE = "template.html"
-
 template_loader = jinja2.FileSystemLoader(searchpath="./")
 template_env = jinja2.Environment(loader=template_loader, autoescape=True)
-
 template = template_env.get_template(TEMPLATE_FILE)
 
+
+parser = argparse.ArgumentParser(description='Creates your GIAC Index')
+parser.add_argument('file', metavar='file', help='a CSV file')
+args = parser.parse_args()
+
 index_dict = defaultdict(list)
-with open('sec542.csv', newline='') as csvfile:
+with open(args.file, newline='') as csvfile:
     index_reader = csv.reader(csvfile, delimiter=',', quotechar="\"")
     index_items = [IndexItem(*row) for row in index_reader]
     for item in index_items:

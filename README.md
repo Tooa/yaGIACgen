@@ -4,21 +4,42 @@ A GIAC index generator that just works ...
 
 ## Build Index
 
-The index generator expects the following CSV format:
+### 1. Learn and accumulate your Knowledge Base 
 
-```bash
-# Format: book,chapter,page,keyword,description
-# Quote character: "
-# Example
+* While studying create your index with MS Excel or LibreOffice Calc
+* The columns in your worksheet should be book number, chapter number, page(-range), keyword, description/notes
+  * The index generator expects the book and chapter number be representable as number whereas the rest can be string like objects
+* You don't need to sort your worksheet beforehand
+  
+### 2. Export your Index as CSV
 
-1,1,1,keyword,"a description"
+* Export your index as CSV file
+  * Make sure you have 5 columns: book number, chapter number, page(-range), keyword, description/notes
+  * Make sure you choose comma-separated entries
+  * Use the `"` character as quote character
+
+
+Example `myindex.csv`
 ```
+1,4,7-15,keyword a,"a description"
+2,5,3,keyword b,"a description"
+``` 
+
+### 3. Generate HTML
+
+The generator will collect your entries group them alphabetically and sort them:
+
 
 ```bash
 ./generator.py <name>.csv > index.html
 ```
 
-## Post Processing
+### 4. Print
+
+* Open the document in Google-Chrome and select the action `print` in the settings menu
+* Choose `Save as PDF` as destination
+* Then under the `more settings` deselect the option `Header and footers`
+* Finally, click `save`
 
 ## TODOs
 
