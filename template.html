@@ -42,10 +42,10 @@
             <ul>
                 {% for e in entries %}
                     <li>
-                        <span class="keyword">{{ e['keyword'] }}</span> 
+                        <span class="keyword">{{ e['keyword'] }}</span>
                         <i>
                             [<span style="color: {{ e.color }}">B{{ e['book_number'] }}</span>/C{{ e['chapter_number'] }}/P{{ e['page_number'] }}]
-                        </i> 
+                        </i>
                         <span class="description">{{ e['description'] }}</span>
                     </li>
                 {% endfor %}

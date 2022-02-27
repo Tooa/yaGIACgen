@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 
-from ast import Str
 import csv
 import jinja2
 import argparse
-from collections import OrderedDict, defaultdict
+from collections import defaultdict
 from dataclasses import dataclass
 
 @dataclass
@@ -15,7 +14,14 @@ class IndexItem:
     keyword: str
     description: str
 
-    colors = ['DarkOrange', 'HotPink', 'MediumSeaGreen', 'Gold', 'SteelBlue']
+    colors = [
+        'DarkOrange',
+        'HotPink',
+        'MediumSeaGreen',
+        'Gold',
+        'SteelBlue',
+        'MediumPurple'
+    ]
 
     @property
     def color(self):
