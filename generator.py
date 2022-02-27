@@ -26,7 +26,7 @@ template_env = jinja2.Environment(loader=template_loader, autoescape=True)
 
 template = template_env.get_template(TEMPLATE_FILE)
 
-index_dict = defaultdict(list) 
+index_dict = defaultdict(list)
 with open('sec542.csv', newline='') as csvfile:
     index_reader = csv.reader(csvfile, delimiter=',', quotechar="\"")
     index_items = [IndexItem(*row) for row in index_reader]
