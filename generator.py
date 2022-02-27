@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import re
 import csv
 import jinja2
 import argparse
@@ -11,7 +12,7 @@ class IndexItem:
     book_number: int
     chapter_number: int
     page_number: str
-    keyword: str
+    _keyword: str
     description: str
 
     colors = [
@@ -24,14 +25,22 @@ class IndexItem:
     ]
 
     @property
-    def color(self):
+    def index_key(self) -> str:
+        return item._keyword[0].upper()
+
+    @property
+    def keyword_repr(self) -> str:
+        return re.sub('\[[0-9]\]', '', self._keyword)
+
+    @property
+    def color(self) -> str:
         return self.colors[int(self.book_number)-1]
 
-    def __lt__(self, other):
-        return self.keyword.upper() < other.keyword.upper()
+    def __lt__(self, other: str):
+        return self._keyword.upper() < other._keyword.upper()
 
-    def __gt__ (self, other):
-        return self.keyword.upper() > other.keyword.upper()
+    def __gt__ (self, other: str):
+        return self._keyword.upper() > other._keyword.upper()
 
 TEMPLATE_FILE = "template.html"
 template_loader = jinja2.FileSystemLoader(searchpath="./")
@@ -52,8 +61,7 @@ with open(args.file, newline='') as csvfile:
 
     index_items = [IndexItem(*row) for row in index_reader]
     for item in index_items:
-        section_key = item.keyword[0].upper()
-        index_dict[section_key].append(item)
+        index_dict[item.index_key].append(item)
 
 sorted_index_dict = {k: sorted(v) for k, v in sorted(index_dict.items(), key=lambda k_v: k_v) }
 rendered_template = template.render(index = sorted_index_dict)
