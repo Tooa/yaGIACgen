@@ -51,6 +51,10 @@ will stay in order and the HTML result does **not** display the magic block.
 * Then under the `more settings` deselect the option `Header and footers`
 * Finally, click `save`
 
+## Limitations
+
+* The tool does not group together entries with the exact same keyword, but different pages,book/chapter numbers. Such occurrences will end-up as separate entries in the HTML file next to each other.
+
 ## TODOs
 
 * Make book colors configurable
