@@ -44,6 +44,6 @@ The generator will collect your entries group them alphabetically and sort them:
 
 ## TODOs
 
-* Allow to define book colors
-* Toggle for CSV header
+* Make book colors configurable
+* Add toggle `--book-colors` to disable feature
 * Indent when first word is the same?

@@ -43,7 +43,9 @@
                 {% for e in entries %}
                     <li>
                         <span class="keyword">{{ e['keyword'] }}</span> 
-                        <i>[B{{ e['book_number'] }}/C{{ e['chapter_number'] }}/P{{ e['page_number'] }}]</i> 
+                        <i>
+                            [<span style="color: {{ e.color }}">B{{ e['book_number'] }}</span>/C{{ e['chapter_number'] }}/P{{ e['page_number'] }}]
+                        </i> 
                         <span class="description">{{ e['description'] }}</span>
                     </li>
                 {% endfor %}

@@ -15,6 +15,12 @@ class IndexItem:
     keyword: str
     description: str
 
+    colors = ['DarkOrange', 'HotPink', 'MediumSeaGreen', 'Gold', 'SteelBlue']
+
+    @property
+    def color(self):
+        return self.colors[int(self.book_number)-1]
+
     def __lt__(self, other):
         return self.keyword.upper() < other.keyword.upper()
 
