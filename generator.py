@@ -29,11 +29,15 @@ template = template_env.get_template(TEMPLATE_FILE)
 
 parser = argparse.ArgumentParser(description='Creates your GIAC Index')
 parser.add_argument('file', metavar='file', help='a CSV file')
+parser.add_argument('--skip-header', default=False, action=argparse.BooleanOptionalAction, help='ignore CSV header column')
 args = parser.parse_args()
 
 index_dict = defaultdict(list)
 with open(args.file, newline='') as csvfile:
     index_reader = csv.reader(csvfile, delimiter=',', quotechar="\"")
+    if(args.skip_header):
+        next(index_reader)
+
     index_items = [IndexItem(*row) for row in index_reader]
     for item in index_items:
         section_key = item.keyword[0].upper()

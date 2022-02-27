@@ -32,6 +32,7 @@ The generator will collect your entries group them alphabetically and sort them:
 
 ```bash
 ./generator.py <name>.csv > index.html
+./generator.py <name>.csv --skip-header > index.html
 ```
 
 ### 4. Print
