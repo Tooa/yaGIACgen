@@ -30,7 +30,13 @@
             .description {
                 font-size: 13px;
             }
-
+            {% for c in book_colors -%}
+                .book-{{ loop.index }} {
+                    color: {{ c }};
+                    text-decoration: underline;
+                    text-decoration-color: {{ c }};
+            }
+            {% endfor %}
             @media print {
             }
         </style>
@@ -44,7 +50,7 @@
                     <li>
                         <span class="keyword">{{ e.keyword_repr }}</span>
                         <i>
-                            [<span style="color: {{ e.color }}; text-decoration: underline; text-decoration-color: {{ e.color }};">B{{ e['book_number'] }}</span>/C{{ e['chapter_number'] }}/P{{ e['page_number'] }}]
+                            [<span class="book-{{ e['book_number'] }}">B{{ e['book_number'] }}</span>/C{{ e['chapter_number'] }}/P{{ e['page_number'] }}]
                         </i>
                         <span class="description">{{ e['description'] }}</span>
                     </li>

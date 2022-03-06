@@ -15,15 +15,6 @@ class IndexItem:
     _keyword: str
     description: str
 
-    colors = [
-        'DarkOrange',
-        'HotPink',
-        'MediumSeaGreen',
-        'Gold',
-        'SteelBlue',
-        'MediumPurple'
-    ]
-
     @property
     def index_key(self) -> str:
         return item._keyword[0].upper()
@@ -31,10 +22,6 @@ class IndexItem:
     @property
     def keyword_repr(self) -> str:
         return re.sub('\[[0-9]\]', '', self._keyword)
-
-    @property
-    def color(self) -> str:
-        return self.colors[int(self.book_number)-1]
 
     def __lt__(self, other: str):
         return self._keyword.upper() < other._keyword.upper()
@@ -47,6 +34,14 @@ template_loader = jinja2.FileSystemLoader(searchpath="./")
 template_env = jinja2.Environment(loader=template_loader, autoescape=True)
 template = template_env.get_template(TEMPLATE_FILE)
 
+book_colors = [
+        'DarkOrange',           # book = 1
+        'HotPink',              # book = 2
+        'MediumSeaGreen',       # book = 3
+        'Gold',                 # book = 4
+        'SteelBlue',            # book = 5
+        'MediumPurple'          # book = 6
+    ]
 
 parser = argparse.ArgumentParser(description='Creates your GIAC Index')
 parser.add_argument('file', metavar='file', help='a CSV file')
@@ -64,5 +59,5 @@ with open(args.file, newline='') as csvfile:
         index_dict[item.index_key].append(item)
 
 sorted_index_dict = {k: sorted(v) for k, v in sorted(index_dict.items(), key=lambda k_v: k_v) }
-rendered_template = template.render(index = sorted_index_dict)
+rendered_template = template.render(index = sorted_index_dict, book_colors = book_colors)
 print(rendered_template)
